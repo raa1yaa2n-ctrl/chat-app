@@ -6,20 +6,26 @@ async function main() {
   const file = 'index.html';
   const code = fs.readFileSync(file, 'utf8');
 
-  // استفاده از مدل جدید و نقطه پایانی v1
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${key}`, {
+  // استفاده از مدل جدید که برای کلیدهای جدید در دسترس است
+  const model = 'gemini-3.5-flash';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+
+  const res = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'x-goog-api-key': key
+    },
     body: JSON.stringify({
       contents: [{ parts: [{ text: `Here is an HTML file:\n${code}\n\nUser request: ${prompt}\n\nReturn ONLY the new full HTML code, no markdown, no explanation.` }] }]
     })
   });
-  
+
   const data = await res.json();
-  
+
   if (data.error) {
     console.error("Gemini API Error:", data.error.message);
-    process.exit(1); 
+    process.exit(1);
   }
 
   if (!data.candidates || !data.candidates[0]) {
