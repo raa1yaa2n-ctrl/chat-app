@@ -25,9 +25,35 @@
             <div class="message sent">سلام! چطوری؟</div>
         </div>
         <div class="input-area">
-            <input type="text" placeholder="پیام خود را بنویسید...">
-            <button>ارسال</button>
+            <input type="text" id="messageInput" placeholder="پیام خود را بنویسید...">
+            <button id="sendBtn">ارسال</button>
         </div>
     </div>
+
+    <script>
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const messagesContainer = document.getElementById('messages');
+
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (text !== '') {
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message sent';
+                newMessage.textContent = text;
+                messagesContainer.appendChild(newMessage);
+                messageInput.value = '';
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
