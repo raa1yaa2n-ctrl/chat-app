@@ -6,8 +6,8 @@ async function main() {
   const file = 'index.html';
   const code = fs.readFileSync(file, 'utf8');
 
-  // اسم مدل اصلاح شد
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+  // استفاده از مدل جدید و نقطه پایانی v1
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${key}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
