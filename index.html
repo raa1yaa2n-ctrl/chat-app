@@ -1,9 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
-    <title>My Chat App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; justify-content: center; height: 100vh; }
+        .chat-container { width: 100%; max-width: 400px; background: white; display: flex; flex-direction: column; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { background: #007bff; color: white; padding: 15px; text-align: center; font-weight: bold; }
+        .messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .message { padding: 10px 15px; border-radius: 15px; max-width: 80%; width: fit-content; }
+        .message.sent { background: #007bff; color: white; align-self: flex-end; border-bottom-right-radius: 0; }
+        .message.received { background: #e4e6eb; color: black; align-self: flex-start; border-bottom-left-radius: 0; }
+        .input-area { display: flex; padding: 10px; background: white; border-top: 1px solid #ddd; }
+        .input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+        .input-area button { background: #007bff; color: white; border: none; padding: 10px 20px; margin-right: 10px; border-radius: 20px; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <h1>سلام! این اولین فایل من است.</h1>
+    <div class="chat-container">
+        <div class="header">چت‌روم من</div>
+        <div class="messages" id="messages">
+            <div class="message received">سلام! این پیام تستی است.</div>
+            <div class="message sent">سلام! چطوری؟</div>
+        </div>
+        <div class="input-area">
+            <input type="text" placeholder="پیام خود را بنویسید...">
+            <button>ارسال</button>
+        </div>
+    </div>
 </body>
 </html>
