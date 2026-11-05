@@ -6,8 +6,8 @@ async function main() {
   const file = 'index.html';
   const code = fs.readFileSync(file, 'utf8');
 
-  // اسم مدل رو دقیق‌تر کردیم و آدرس رو اصلاح کردیم
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`, {
+  // اسم مدل اصلاح شد
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -17,7 +17,6 @@ async function main() {
   
   const data = await res.json();
   
-  // این بخش جدید اضافه شد تا اگه خطایی بود، دقیق بهمون بگه
   if (data.error) {
     console.error("Gemini API Error:", data.error.message);
     process.exit(1); 
